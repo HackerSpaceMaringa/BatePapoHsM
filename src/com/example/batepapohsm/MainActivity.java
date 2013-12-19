@@ -17,11 +17,12 @@ import android.view.View.OnClickListener;
 import android.view.ViewGroup.LayoutParams;
 import android.widget.Button;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 public class MainActivity extends Activity implements OnClickListener {
 	private BluetoothAdapter bAdapter;
-	private LinearLayout layout;
+	private RelativeLayout relLay;
 	private LinkedList<BluetoothDevice> list = new LinkedList<BluetoothDevice>();
 	
 	private final BroadcastReceiver bRec = new BroadcastReceiver() {
@@ -39,8 +40,8 @@ public class MainActivity extends Activity implements OnClickListener {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        layout = (LinearLayout)findViewById(R.id.linLay);
 		bAdapter = BluetoothAdapter.getDefaultAdapter();
+		relLay = (RelativeLayout)findViewById(R.id.relLay);
         
         Button bt = (Button)findViewById(R.id.btScan);
         bt.setOnClickListener(this);
@@ -68,7 +69,8 @@ public class MainActivity extends Activity implements OnClickListener {
 				tv = new TextView(this);
 				tv.setText(d.getName());
 				tv.setLayoutParams(new LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT));
-				layout.addView(tv);
+				tv.setPadding(0, 10, 0, 0);
+				relLay.addView(tv);
 			}
 		} else {
 			Log.d("BatePapo", "NotHave");

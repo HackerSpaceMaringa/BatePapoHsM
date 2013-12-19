@@ -1,6 +1,6 @@
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/linLay"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/relLay"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:paddingBottom="@dimen/activity_vertical_margin"
@@ -19,4 +19,4 @@
         android:layout_marginTop="70dp"
         android:text="@string/botao_scan" />
 
-</LinearLayout>
+</RelativeLayout>
