@@ -5,6 +5,8 @@ import java.io.InputStream;
 import java.io.OutputStream;
 
 import android.bluetooth.BluetoothSocket;
+import android.content.Context;
+import android.content.Intent;
 import android.os.Handler;
 
 public class ConnectedThread extends Thread {
@@ -14,7 +16,9 @@ public class ConnectedThread extends Thread {
 	private final Handler bHandler = new Handler();
 	
 	
-	public ConnectedThread(BluetoothSocket bs) {
+	public ConnectedThread(BluetoothSocket bs, Context context) {
+		startNewActivity(context);
+		
 		bSocket = bs;
 		InputStream in = null;
 		OutputStream out = null;
@@ -28,6 +32,11 @@ public class ConnectedThread extends Thread {
 		oStream = out;
 	}
 	
+	private void startNewActivity(Context context) {
+		Intent intent = new Intent(context, DialogActivity.class);
+		context.startActivity(intent);
+	}
+
 	public void run() {
 		byte[] buffer = new byte[1024];
 		int bytes = 0;
